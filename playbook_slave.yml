@@ -1,0 +1,13 @@
+---
+- name: Prepare the Rancher Master Server
+  hosts: all
+  become: True
+  
+  vars:
+    - myrole: slave
+ 
+  tasks: 
+    - hostname: 
+        name: "{{ myrole }}"
+    - import_tasks: includes/playbook_include_basics.yml
+    - import_tasks: includes/playbook_include_docker.yml    

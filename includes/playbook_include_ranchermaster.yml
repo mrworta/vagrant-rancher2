@@ -1,0 +1,10 @@
+    - name: Create and run Rancher Master Container
+      docker_container:
+        name: rancher-001
+        image: rancher/rancher
+        state: started
+        volumes:
+          - rancher-001:/var/lib/rancher
+        published_ports:
+          - 80:80
+          - 443:443

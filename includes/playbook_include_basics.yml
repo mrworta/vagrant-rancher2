@@ -1,0 +1,24 @@
+    - name: Put hostname in hosts file
+      lineinfile: 
+        path: /etc/hosts
+        regexp: '^127.0.1.1'
+        line: "127.0.1.1 {{ myrole }}"
+
+    - name: Install some basics
+      apt:
+        name: curl,git,aptitude
+        state: latest
+        update_cache: yes
+
+    - name: Update the VM
+      apt:
+        upgrade: yes
+
+    - name: Install repo tools
+      apt: 
+        name: apt-transport-https,ca-certificates,gnupg2,software-properties-common
+
+    - name: Install python and python-tools
+      apt:
+        name: python,python-docker,python-pip,python-virtualenv
+        state: latest
